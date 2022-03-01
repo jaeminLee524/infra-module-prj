@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: infra-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: main-service
+                port:
+                  number: 80
+          - path: /pay
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pay-service
+                port:
+                  number: 80
+          - path: /order
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+          - path: /item
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: item-service7
+                port:
+                  number: 80

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: main
+  template:
+    metadata:
+      labels:
+        name: main
+    spec:
+      containers:
+        - image: rkwoals524/main:v4
+          name: main-page
+          # labels:
+          #   app: main
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-service
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    name: main
